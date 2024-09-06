@@ -1,20 +1,19 @@
 const { default: mongoose } = require('mongoose');
 const  problems = require('../models/problems');
 
+
 exports.createProblems = async(req,res)=>{
     try{
-         const {title,description,difficulty,constraints,input,output} = req.body;
-         if(!title || !description || !difficulty || !constraints || !input || !output){
+         const {title,description,difficulty,constraints,example} = req.body;
+         if(!title || !description || !difficulty || !constraints || !example){
              return res.status(400).json({message:'Please fill all fields'});
          }
-
          const playload = {
             title:title,
             description:description,
             difficulty:difficulty,
             constraints:constraints,
-            input:input,
-            output:output
+            examples:example
          }
          const newProblem = await problems.create(playload);
          res.status(201).json({message:'Problem created successfully',data:newProblem});

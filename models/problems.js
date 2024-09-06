@@ -1,5 +1,17 @@
+const { type } = require('bcrypto/lib/js/schnorr');
 const mongoose = require('mongoose');
 
+
+const exampleSchema = new mongoose.Schema({
+    input: {
+        type: String,
+        required: true,
+    },
+    output: {
+        type: String,
+        required: true,
+    }
+}, { _id: false });
 
 const problemSchema = new mongoose.Schema({
     title: {
@@ -18,14 +30,7 @@ const problemSchema = new mongoose.Schema({
         type: String,
         required: true,
     }],
-    input: [{
-        type: String,
-        required: true,
-    }],
-    output: [{
-        type: String,
-        required: true,
-    }],
+   examples: [exampleSchema]
 });
 
 module.exports = mongoose.model('Problem', problemSchema);
