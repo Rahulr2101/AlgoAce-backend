@@ -1,4 +1,4 @@
-const { type } = require('bcrypto/lib/js/schnorr');
+
 const mongoose = require('mongoose');
 
 
