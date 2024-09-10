@@ -1,12 +1,15 @@
 exports.execute = async(req,res)=>{
     try{
-        const {code,compiler} = req.body;
+        const {code,compiler,questionId,unique,program} = req.body;
         const userID = req.user;
         let parmeter = "";
         let extra_params = {
-            user:"rahul",
-            pass:"1234"
+            userID:userID,
+            questionId:questionId,
+            unique:unique,
+            program:program
         }
+      
         let headersList = {
             Accept: "*/*",
             Authorization: process.env.ONLINE_COMPILER_KEY,

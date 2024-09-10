@@ -7,6 +7,7 @@ exports.protect = asyncHandler(async(req,res,next)=>{
   let token;
 
   token = req.cookies.token;
+
   if(token){
     try{
       const decoded = jwt.verify(token,process.env.JWT_SECRET);

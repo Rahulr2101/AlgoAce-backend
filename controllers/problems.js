@@ -54,7 +54,6 @@ try{
 
 exports.deleteProblem = async(req,res)=>{
 try{
-    console.log(req.params);
     const {id} = req.params;
     if(!id){
         return res.status(400).json({message:'Please provide an id'});
