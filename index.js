@@ -23,8 +23,9 @@ app.use(
 );
 app.use(express.urlencoded({ extended: true }));
 
+// Inside your /webhook route
+
 app.post("/webhook", async (req, res) => {
-  // Assuming the webhook contains userId
   try {
     console.log(req.body);
     const userId = req.body.extra_params.userID;
@@ -34,22 +35,35 @@ app.post("/webhook", async (req, res) => {
       console.log("User not found");
       return res.status(400).json({ message: "User not found" });
     }
-    const submissions = await submission.create({
+
+    const submissionData = {
       problemID: req.body.extra_params.questionId,
-      program:req.body.extra_params.program,
+      program: req.body.extra_params.program,
+      testcaseID: req.body.extra_params.testcaseId,
+      input: req.body.extra_params.input,
+      excepted_output: req.body.extra_params.output,
       output: req.body.output,
       status: req.body.status,
       unique: req.body.extra_params.unique,
-    });
-    await User.findByIdAndUpdate(userId, {
-      $push: { submission: submissions._id },
-    });
-    userExist.save();
+      error: req.body.error,
+    };
+
+    const newSubmission = await submission.create(submissionData);
+
+    // Add the new submission to the user's submissions
+    userExist.submissions.push(newSubmission._id);
+
+    await userExist.save();
+
     console.log("Submission saved");
+    return res.status(200).json({ message: 'Submission saved successfully' });
+
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 const port = process.env.PORT || 3000;
 

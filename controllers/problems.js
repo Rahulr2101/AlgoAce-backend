@@ -4,8 +4,8 @@ const  problems = require('../models/problems');
 
 exports.createProblems = async(req,res)=>{
     try{
-         const {title,description,difficulty,constraints,example} = req.body;
-         if(!title || !description || !difficulty || !constraints || !example){
+         const {title,description,difficulty,constraints,example,testcase} = req.body;
+         if(!title || !description || !difficulty || !constraints || !example||!testcase){
              return res.status(400).json({message:'Please fill all fields'});
          }
          const playload = {
@@ -13,7 +13,8 @@ exports.createProblems = async(req,res)=>{
             description:description,
             difficulty:difficulty,
             constraints:constraints,
-            examples:example
+            examples:example,
+            testcase:testcase
          }
          const newProblem = await problems.create(playload);
          res.status(201).json({message:'Problem created successfully',data:newProblem});

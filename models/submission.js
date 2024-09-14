@@ -25,6 +25,21 @@ const submission = new mongoose.Schema({
         type: Date,   
         default: Date.now  
     },
+    error:{
+        type:String,
+    },
+    excepted_output:{
+        type:String,
+        required:true
+    },
+    testcaseID:{
+        type:String,
+        required:true
+    },
+    input:{
+        type:String,
+        required:true
+    },
     unique:{
         type:String,
         required:true,

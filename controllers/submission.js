@@ -13,8 +13,9 @@ exports.getSubmissionById = async (req, res) => {
       return res.status(400).json({ message: "Please provide an id" });
     }
     const userExist = await user.findById({ _id: userId });
-    const findSubmission = userExist.submission;
-    const submiss = await submission.findOne({ problemID:questionId,unique:unique });
+   
+    
+    const submiss = await submission.find({  problemID: questionId, unique: unique });
     console.log(submiss)
     if (!submission) {
       return res.status(404).json({ message: "Submission not found" });
