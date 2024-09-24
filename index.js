@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const submission = require("./models/submission");
 const User = require("./models/user");
 const mongoose = require("mongoose");
+const generate = require("./routes/gemini")
 
 const app = express();
 // Create HTTP server
@@ -72,6 +73,7 @@ database.connect();
 app.use("/api/problem", problems);
 app.use("/api", execute);
 app.use("/api/auth", user);
+app.use("/api",generate)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
