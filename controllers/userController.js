@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const { default: mongoose } = require("mongoose");
 
 const { generateToken } = require("../utils/generateToken");
+
+
+
 exports.registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;

@@ -85,26 +85,20 @@ exports.execute = async (req, res) => {
       }
     }
 
-    // Group handling
-    let groupRecord = await group.findOne({ problemType: problem.type });
-    if (!groupRecord) {
-      groupRecord = await group.create({ problemType: problem.type });
+    if (!userExist.submissions.includes(problem._id)) { 
+      console.log("problem._id", problem._id);
+      const payload = {
+        problemId: problem._id,
+        type: problem.type,
+        code: code,
+        program: program,
+      }
+      userExist.submissions.push(payload); 
+      await userExist.save();
     }
+    await userExist.save();
 
-    // Save submission
-    await submission.create({
-      userId: userID,
-      problemId: questionId,
-      code,
-      result: "Success", // You can adjust this based on execution results
-      createdAt: new Date(),
-    });
-
-    await group.findOneAndUpdate(
-      { problemType: problem.type },
-      { $push: { submissionCode: problem._id } }
-    );
-
+   
     return res.status(200).json({ success: true, message: "Code executed successfully" });
   } catch (err) {
     console.error(err);

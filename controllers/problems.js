@@ -1,5 +1,6 @@
 const { default: mongoose } = require("mongoose");
 const problems = require("../models/problems");
+const user = require("../models/user");
 
 exports.createProblems = async (req, res) => {
   try {
@@ -7,6 +8,7 @@ exports.createProblems = async (req, res) => {
       title,
       description,
       type,
+      typeName,
       difficulty,
       constraints,
       examples,
@@ -17,6 +19,7 @@ exports.createProblems = async (req, res) => {
       !title ||
       !description ||
       !type ||
+      !typeName ||
       !difficulty ||
       !constraints ||
       !examples ||
@@ -28,6 +31,7 @@ exports.createProblems = async (req, res) => {
     const playload = {
       title: title,
       type: type,
+      typeName: typeName,
       description: description,
       difficulty: difficulty,
       constraints: constraints,
