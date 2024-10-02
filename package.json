@@ -2,7 +2,7 @@
   "name": "algoace",
   "version": "1.0.0",
   "main": "index.js",
-  "engines":{
+  "engines": {
     "node": "20.x"
   },
   "scripts": {
@@ -17,7 +17,6 @@
     "@google/generative-ai": "^0.19.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
-    "bcrypto": "^5.5.2",
     "body-parser": "^1.20.2",
     "bull": "^4.16.3",
     "cookie-parser": "^1.4.6",
