@@ -1,5 +1,5 @@
 const user = require("../models/user");
-const bcrypt = require("bcrypt");
+const bcrypt = require('@node-rs/bcrypt');
 const { default: mongoose } = require("mongoose");
 
 const { generateToken } = require("../utils/generateToken");

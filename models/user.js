@@ -1,5 +1,4 @@
-const { paramsScalarBits } = require('bcrypto/lib/js/dsa');
-const { type } = require('bcrypto/lib/js/schnorr');
+
 const e = require('express');
 const mongoose = require('mongoose');
 
