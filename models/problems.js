@@ -1,3 +1,4 @@
+const { type } = require("bcrypto/lib/js/schnorr");
 const mongoose = require("mongoose");
 
 const exampleSchema = new mongoose.Schema(
@@ -18,6 +19,10 @@ const problemSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+  },
+  type:{
+    type:String,
+    required:true
   },
   description: {
     type: String,
@@ -44,6 +49,12 @@ const problemSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+    },
+  ],
+  tags: [
+    {
+      type: String,
+      required: true,
     },
   ],
 });

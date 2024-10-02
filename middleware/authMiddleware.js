@@ -5,7 +5,6 @@ const User = require("../models/user");
 
 exports.protect = asyncHandler(async(req,res,next)=>{
   let token;
-
   token = req.cookies.token;
 
   if(token){
