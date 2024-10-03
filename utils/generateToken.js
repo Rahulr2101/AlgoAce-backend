@@ -9,6 +9,7 @@
 
     res.cookie('token', token, {
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      httpOnly: true, // Cookie is only accessible by the web server
+      httpOnly: true,
+      sameSite: 'None', // Cookie is only accessible by the web server
     });
   };
