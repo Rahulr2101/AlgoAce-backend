@@ -42,7 +42,7 @@ exports.execute = async (req, res) => {
     for (const testcase of examples) {
       const bodyContent = JSON.stringify({
         language: "python",
-        version: "3.12.0",
+        version: "3.10.0",
         files: [{ name: "temp.py", content: code }],
         stdin: testcase.input,
       });
