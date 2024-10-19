@@ -85,7 +85,7 @@ exports.execute = async (req, res) => {
       }
     }
 
-    if (!userExist.submissions.some(submission => submission.problemId === problem._id)) {
+    if (!userExist.submissions.some(submission => submission.problemId.equals(problem._id))) {
       console.log("problem._id", problem._id);
       const payload = {
         problemId: problem._id,
@@ -97,8 +97,6 @@ exports.execute = async (req, res) => {
       await userExist.save();
     }
     
-
-   
     return res.status(200).json({ success: true, message: "Code executed successfully" });
   } catch (err) {
     console.error(err);
