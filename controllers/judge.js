@@ -55,7 +55,7 @@ exports.execute = async (req, res) => {
 
       let response;
       try {
-        response = await fetch("https://jcseao9.localto.net/api/v2/execute", {
+        response = await fetch("https://emkc.org/api/v2/piston/execute", {
           method: "POST",
           body: bodyContent,
           headers: headersList,
